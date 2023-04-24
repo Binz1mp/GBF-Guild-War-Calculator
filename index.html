@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script type="text/javascript" src="index.js"></script>
+  <title>그랑블루 판타지 별의 고전장 효율 계산기</title>
+</head>
+
+<body onload="displayImg();">
+
+
+  <div id="header">
+
+
+    <div id="navoverwrap">
+      <div id="navtitle">
+        <img src="" name="sticker" style="width:3em"><span style="margin-left:10px;"><b>고전장 효율 계산기</b></span>
+      </div>
+
+      <div id="navwrap">
+        <div class="navlink">
+          <a href="https://github.com/clover-ly" class="header">원작자 (clover-ly)</a>
+        </div>
+        <div class="navlink">
+          <a href="https://gallog.dcinside.com/voidvoidvoid" class="header">고친놈 (착한친구)</a>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+
+  <h2>고전장 효율 계산기</h2>
+  <div style="max-width: 750px;margin-bottom:30px;">
+    아래에 나오는 수치는 그거 하나만 돌았을때 필요한 양이에요.
+    <br>
+    김치찌개
+    <br>
+  </div>
+
+
+  <div id="columnwrap">
+
+    <div id="inputcolumn">
+      <div id="radiowrapper">
+        <b> 목표: </b><br>
+
+        <input type="text" id="goalNumber" value="40" class="styled" style="background:#eee;width:85px;margin-top:5px;">
+
+        <select id="goalSelect" onchange="updateProgText()">
+          <option value=" Boxes">박스</option>
+          <option value=" Tokens">토큰</option>
+          <option value=" Meats">고기</option>
+          <option value=" Honors">공헌도</option>
+        </select><br>
+        <div style="margin-top:10px;">
+          <b>현재:</b><br>
+          <input type="text" id="progress" value="0" class="styled" style="background:#eee;width:85px;margin-top:5px;">
+          <span id="progType" style="font-size:.95em;margin-left:3px;">Boxes</span>
+
+        </div>
+      </div>
+
+
+      <br><b>주회</b><br>
+      <input type="checkbox" name="exCalc" id="exCalcCheck" value="ex"
+        onclick="hideDataCard('extremeDataCard')">Extreme<br>
+      <input type="checkbox" name="expCalc" value="exp" onclick="hideDataCard('expDataCard')" id="expCalcCheck"
+        checked>Extreme+<br>
+      <input type="checkbox" name="nm90Calc" value="nm90" onclick="hideDataCard('nm90DataCard')" id="nm90CalcCheck"
+        checked>Nightmare 90<br>
+      <input type="checkbox" name="nm95Calc" value="nm95" onclick="hideDataCard('nm95DataCard')" id="nm95CalcCheck"
+        checked>Nightmare 95<br>
+      <input type="checkbox" name="nm100Calc" value="nm100" onclick="hideDataCard('nm100DataCard')"
+        id="nm100CalcCheck">Nightmare 100<br>
+      <input type="checkbox" name="nm150Calc" value="nm150" onclick="hideDataCard('nm150DataCard')" id="nm150CalcCheck"
+        checked>Nightmare 150<br>
+      <input type="checkbox" name="nm200Calc" value="nm200" onclick="hideDataCard('nm200DataCard')" id="nm200CalcCheck"
+        checked>Nightmare 200<br>
+      <br>
+      <!-- <b>Include FR Tokens?</b><br>
+    <input type="radio" name="frTokens" value="yes" checked> Yes<br>
+    <input type="radio" name="frTokens" value="no"> No<br>
+    <span style="font-size:8pt;"><i>Please note that FR token calculation assumes solo clear.</i></span> -->
+      <br><br>
+      <button onclick="calculate()">계산하기</button>
+
+    </div>
+
+
+    <br>
+    <div id="cardcolumn">
+      <div class="card" id="extremeDataCard" style="display:none;">
+        <span class="cardhead">
+          <b>Extreme</b>
+        </span>
+        <div class="cardcontent">
+
+          <div class="inputtotalwrap">
+            <div id="labelwrap">
+
+              <input id="exHonorsInput" class="styled" onfocus="material('exHonorsInputLabel', 'exHonorsInput')"
+                onblur="material2('exHonorsInputLabel', 'exHonorsInput')" value="51000">
+              <label id="exHonorsInputLabel">Honors</label><br><br>
+            </div><br>
+
+            <div id="labelwrap" style="display:inline-block;">
+
+              <input id="exTimeInputMin" class="styled shortin"
+                onfocus="material('exTimeInputLabelMin', 'exTimeInputMin')"
+                onblur="material2('exTimeInputLabelMin', 'exTimeInputMin')" value="0">
+              <label id="exTimeInputLabelMin">Min</label><br><br>
+            </div>
+
+            <div id="labelwrap" style="display:inline-block;">
+
+              <input id="exTimeInputSec" class="styled shortin"
+                onfocus="material('exTimeInputLabelSec', 'exTimeInputSec')"
+                onblur="material2('exTimeInputLabelSec', 'exTimeInputSec')" value="0">
+              <label id="exTimeInputLabelSec">Sec</label><br><br>
+            </div>
+          </diV>
+
+          <div class="reportwrap">
+            <span id="exTimeDisplay">00:00:00</span> | <span id="exFightCountDisplay">00</span> 번 주회 <br> <span
+              id="exHonorsDisplay">00</span> 공헌도<br> <span id="exTokenDisplay">00</span> 토큰 <br> 고기 <span
+              id="exMeatsDisplay">00</span>개 획득<br>
+            <span id="exAPDisplay">00</span> AP / 반홍
+            <span id="exPotsDisplay"> 00</span>개<br>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" id="expDataCard">
+        <span class="cardhead">
+          <b>Extreme+</b>
+        </span>
+        <div class="cardcontent">
+
+          <div class="inputtotalwrap">
+            <div id="labelwrap">
+
+              <input id="expHonorsInput" class="styled" onfocus="material('expHonorsInputLabel', 'expHonorsInput')"
+                onblur="material2('expHonorsInputLabel', 'expHonorsInput')" value="80800">
+              <label id="expHonorsInputLabel">Honors</label><br><br>
+            </div><br>
+
+            <div id="labelwrap" style="display:inline-block;">
+
+              <input id="expTimeInputMin" class="styled shortin"
+                onfocus="material('expTimeInputLabelMin', 'expTimeInputMin')"
+                onblur="material2('expTimeInputLabelMin', 'expTimeInputMin')" value="0">
+              <label id="expTimeInputLabelMin">Min</label><br><br>
+            </div>
+
+            <div id="labelwrap" style="display:inline-block;">
+
+              <input id="expTimeInputSec" class="styled shortin"
+                onfocus="material('expTimeInputLabelSec', 'expTimeInputSec')"
+                onblur="material2('expTimeInputLabelSec', 'expTimeInputSec')" value="0">
+              <label id="expTimeInputLabelSec">Sec</label><br><br>
+            </div>
+          </diV>
+
+          <div class="reportwrap">
+            <span id="expTimeDisplay">00:00:00</span> | <span id="expFightCountDisplay">00</span> 번 주회 <br> <span
+              id="expHonorsDisplay">00</span> 공헌도<br> <span id="expTokenDisplay">00</span> 토큰 <br> 고기 <span
+              id="expMeatsDisplay">00</span>개 획득<br> <span id="expAPDisplay">00</span> AP / 반홍
+            <span id="expPotsDisplay"> 00</span>개<br>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" id="nm90DataCard">
+        <span class="cardhead">
+          <b>Nightmare 90</b>
+        </span>
+        <div class="cardcontent">
+
+          <div class="inputtotalwrap">
+            <div id="labelwrap">
+
+              <input id="nm90HonorsInput" class="styled" onfocus="material('nm90HonorsInputLabel', 'nm90HonorsInput')"
+                onblur="material2('nm90HonorsInputLabel', 'nm90HonorsInput')" value="260000">
+              <label id="nm90HonorsInputLabel">Honors</label><br><br>
+            </div><br>
+
+            <div id="labelwrap" style="display:inline-block;">
+
+              <input id="nm90TimeInputMin" class="styled shortin"
+                onfocus="material('nm90TimeInputLabelMin', 'nm90TimeInputMin')"
+                onblur="material2('nm90TimeInputLabelMin', 'nm90TimeInputMin')" value="0">
+              <label id="nm90TimeInputLabelMin">Min</label><br><br>
+            </div>
+
+            <div id="labelwrap" style="display:inline-block;">
+
+              <input id="nm90TimeInputSec" class="styled shortin"
+                onfocus="material('nm90TimeInputLabelSec', 'nm90TimeInputSec')"
+                onblur="material2('nm90TimeInputLabelSec', 'nm90TimeInputSec')" value="0">
+              <label id="nm90TimeInputLabelSec">Sec</label><br><br>
+            </div>
+          </diV>
+
+          <div class="reportwrap">
+            <span id="nm90TimeDisplay">00:00:00</span> | <span id="nm90FightCountDisplay">00</span> 번 주회 <br> <span
+              id="nm90HonorsDisplay">00</span> 공헌도<br> <span id="nm90TokenDisplay">00</span> 토큰 <br> 고기 <span
+              id="nm90MeatsDisplay">00</span>개<br> <span id="nm90APDisplay">00</span> AP / 반홍
+            <span id="nm90PotsDisplay"> 00</span>개<br>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card" id="nm95DataCard"">
+  <span class=" cardhead">
+        <b>Nightmare 95</b>
+        </span>
+        <div class="cardcontent">
+
+          <div class="inputtotalwrap">
+            <div id="labelwrap">
+
+              <input id="nm95HonorsInput" class="styled" onfocus="material('nm95HonorsInputLabel', 'nm95HonorsInput')"
+                onblur="material2('nm95HonorsInputLabel', 'nm95HonorsInput')" value="910000">
+              <label id="nm95HonorsInputLabel">Honors</label><br><br>
+            </div><br>
+
+            <div id="labelwrap" style="display:inline-block;">
+
+              <input id="nm95TimeInputMin" class="styled shortin"
+                onfocus="material('nm95TimeInputLabelMin', 'nm95TimeInputMin')"
+                onblur="material2('nm95TimeInputLabelMin', 'nm95TimeInputMin')" value="0">
+              <label id="nm95TimeInputLabelMin">Min</label><br><br>
+            </div>
+
+            <div id="labelwrap" style="display:inline-block;">
+
+              <input id="nm95TimeInputSec" class="styled shortin"
+                onfocus="material('nm95TimeInputLabelSec', 'nm95TimeInputSec')"
+                onblur="material2('nm95TimeInputLabelSec', 'nm95TimeInputSec')" value="0">
+              <label id="nm95TimeInputLabelSec">Sec</label><br><br>
+            </div>
+          </diV>
+
+          <div class="reportwrap">
+            <span id="nm95TimeDisplay">00:00:00</span> | <span id="nm95FightCountDisplay">00</span> 번 주회 <br> <span
+              id="nm95HonorsDisplay">00</span> 공헌도<br> <span id="nm95TokenDisplay">00</span> 토큰 <br> 고기 <span
+              id="nm95MeatsDisplay">00</span>개<br> <span id="nm95APDisplay">00</span> AP / 반홍
+            <span id="nm95PotsDisplay"> 00</span>개<br>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card" id="nm100DataCard" style="display:none;">
+        <span class="cardhead">
+          <b>Nightmare 100</b>
+        </span>
+        <div class="cardcontent">
+
+          <div class="inputtotalwrap">
+            <div id="labelwrap">
+
+              <input id="nm100HonorsInput" class="styled"
+                onfocus="material('nm100HonorsInputLabel', 'nm100HonorsInput')"
+                onblur="material2('nm100HonorsInputLabel', 'nm100HonorsInput')" value="2650000">
+              <label id="nm100HonorsInputLabel">Honors</label><br><br>
+            </div><br>
+
+            <div id="labelwrap" style="display:inline-block;">
+
+              <input id="nm100TimeInputMin" class="styled shortin"
+                onfocus="material('nm100TimeInputLabelMin', 'nm100TimeInputMin')"
+                onblur="material2('nm100TimeInputLabelMin', 'nm100TimeInputMin')" value="0">
+              <label id="nm100TimeInputLabelMin">Min</label><br><br>
+            </div>
+
+            <div id="labelwrap" style="display:inline-block;">
+
+              <input id="nm100TimeInputSec" class="styled shortin"
+                onfocus="material('nm100TimeInputLabelSec', 'nm100TimeInputSec')"
+                onblur="material2('nm100TimeInputLabelSec', 'nm100TimeInputSec')" value="0">
+              <label id="nm100TimeInputLabelSec">Sec</label><br><br>
+            </div>
+          </diV>
+
+          <div class="reportwrap">
+            <span id="nm100TimeDisplay">00:00:00</span> | <span id="nm100FightCountDisplay">00</span> 번 주회 <br> <span
+              id="nm100HonorsDisplay">00</span> 공헌도<br> <span id="nm100TokenDisplay">00</span> 토큰 <br> 고기 <span
+              id="nm100MeatsDisplay">00</span>개<br> <span id="nm100APDisplay">00</span> AP / 반홍
+            <span id="nm100PotsDisplay"> 00</span>개<br>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card" id="nm150DataCard">
+        <span class="cardhead">
+          <b>Nightmare 150</b>
+        </span>
+        <div class="cardcontent">
+
+          <div class="inputtotalwrap">
+            <div id="labelwrap">
+
+              <input id="nm150HonorsInput" class="styled"
+                onfocus="material('nm150HonorsInputLabel', 'nm150HonorsInput')"
+                onblur="material2('nm150HonorsInputLabel', 'nm150HonorsInput')" value="4100000">
+              <label id="nm150HonorsInputLabel">Honors</label><br><br>
+            </div><br>
+
+            <div id="labelwrap" style="display:inline-block;">
+
+              <input id="nm150TimeInputMin" class="styled shortin"
+                onfocus="material('nm150TimeInputLabelMin', 'nm150TimeInputMin')"
+                onblur="material2('nm150TimeInputLabelMin', 'nm150TimeInputMin')" value="0">
+              <label id="nm150TimeInputLabelMin">Min</label><br><br>
+            </div>
+
+            <div id="labelwrap" style="display:inline-block;">
+
+              <input id="nm150TimeInputSec" class="styled shortin"
+                onfocus="material('nm150TimeInputLabelSec', 'nm150TimeInputSec')"
+                onblur="material2('nm150TimeInputLabelSec', 'nm150TimeInputSec')" value="0">
+              <label id="nm150TimeInputLabelSec">Sec</label><br><br>
+            </div>
+          </diV>
+
+          <div class="reportwrap">
+            <span id="nm150TimeDisplay">00:00:00</span> | <span id="nm150FightCountDisplay">00</span> 번 주회 <br><span
+              id="nm150HonorsDisplay">00</span> 공헌도<br><span id="nm150TokenDisplay">00</span> 토큰 <br><span
+              id="nm150MeatsDisplay">00</span>개<br><span id="nm150APDisplay">00</span> AP / 반홍
+            <span id="nm150PotsDisplay"> 00</span>개<br>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card" id="nm200DataCard">
+        <span class="cardhead">
+          <b>Nightmare 200</b>
+        </span>
+        <div class="cardcontent">
+
+          <div class="inputtotalwrap">
+            <div id="labelwrap">
+
+              <input id="nm200HonorsInput" class="styled"
+                onfocus="material('nm200HonorsInputLabel', 'nm200HonorsInput')"
+                onblur="material2('nm200HonorsInputLabel', 'nm200HonorsInput')" value="10250000">
+              <label id="nm200HonorsInputLabel">Honors</label><br><br>
+            </div><br>
+
+            <div id="labelwrap" style="display:inline-block;">
+
+              <input id="nm200TimeInputMin" class="styled shortin"
+                onfocus="material('nm200TimeInputLabelMin', 'nm200TimeInputMin')"
+                onblur="material2('nm200TimeInputLabelMin', 'nm200TimeInputMin')" value="0">
+              <label id="nm200TimeInputLabelMin">Min</label><br><br>
+            </div>
+
+            <div id="labelwrap" style="display:inline-block;">
+
+              <input id="nm200TimeInputSec" class="styled shortin"
+                onfocus="material('nm200TimeInputLabelSec', 'nm200TimeInputSec')"
+                onblur="material2('nm200TimeInputLabelSec', 'nm200TimeInputSec')" value="0">
+              <label id="nm200TimeInputLabelSec">Sec</label><br><br>
+            </div>
+          </diV>
+
+          <div class="reportwrap">
+            <span id="nm200TimeDisplay">00:00:00</span> | <span id="nm200FightCountDisplay">00</span> 번 주회 <br> <span
+              id="nm200HonorsDisplay">00</span> 공헌도<br> <span id="nm200TokenDisplay">00</span> 토큰 <br> 고기 <span
+              id="nm200MeatsDisplay">00</span>개<br> <span id="nm200APDisplay">00</span> AP / 반홍
+            <span id="nm200PotsDisplay"> 00</span>개<br>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+  </div>
+
+  <br><br>
+
+
+  <br>
+  <Br><br>
+  <div style="display:none">
+    <h3>Report:</h3><br> To reach your goal of: <span id="reportGoalDisplay">0 </span>
+    <span id="reportGoalTypeDisplay">honors:</span><br><br>
+
+    <div id="reportEx" class="reportBox">
+      <b>Extreme:</b><br><br>
+
+    </div>
+
+    <div id="reportExp" class="reportBox">
+      <b>Extreme+: <br></b><br>
+      <span id="expFightCountDisplay">00</span> fights<br>
+      <span id="expTimeDisplay">00:00:00</span> <br>
+      <span id="expHonorsDisplay">00</span> 공헌도<br>
+      <span id="expTokenDisplay">00</span> tokens<br>
+      <span id="expMeatsDisplay">00</span> meat gain<br>
+      <span id="expAPDisplay">00</span> AP<br>
+    </div>
+    <div id="reportnm90" class="reportBox" style="display:none;">
+      <b>Nightmare 90: <br></b><br>
+      <span id="nm90FightCountDisplay">00</span> fights<br>
+      <span id="nm90TimeDisplay">00:00:00</span> <br>
+      <span id="nm90HonorsDisplay">00</span> 공헌도<br>
+      <span id="nm90TokenDisplay">00</span> tokens<br>
+      <span id="nm90MeatsDisplay">00</span> meat loss<br>
+      <span id="nm90APDisplay">00</span> AP<br>
+    </div>
+
+    <div id="reportnm95" class="reportBox" style="display:none;">
+      <b>Nightmare 95: <br></b><br>
+      <span id="nm95FightCountDisplay">00</span> fights<br>
+      <span id="nm95TimeDisplay">00:00:00</span><br>
+      <span id="nm95HonorsDisplay">00</span> 공헌도<br>
+      <span id="nm95TokenDisplay">00</span> tokens<br>
+      <span id="nm95MeatsDisplay">00</span> meat loss<br>
+      <span id="nm95APDisplay">00</span> AP<br>
+    </div>
+
+    <div id="reportnm100" class="reportBox" style="display:none;">
+      <b>Nightmare 100: <br></b><br>
+      <span id="nm100FightCountDisplay">00</span> fights<br>
+      <span id="nm100TimeDisplay">00:00:00</span><br>
+      <span id="nm100HonorsDisplay">00</span> 공헌도<br>
+      <span id="nm100TokenDisplay">00</span> tokens<br>
+      <span id="nm100MeatsDisplay">00</span> meat loss<br>
+      <span id="nm100APDisplay">00</span><br>
+    </div>
+
+    <div id="reportnm150" class="reportBox" style="display:none;">
+      <b>Nightmare 150: <br></b><br>
+      <span id="nm150FightCountDisplay">00</span> fights<br>
+      <span id="nm150TimeDisplay">00:00:00</span><br>
+      <span id="nm150HonorsDisplay">00</span> 공헌도<br>
+      <span id="nm150TokenDisplay">00</span> tokens<br>
+      <span id="nm150MeatsDisplay">00</span> meat loss<br>
+      <span id="nm150APDisplay">00</span><br>
+    </div>
+
+    <div id="reportnm200" class="reportBox" style="display:none;">
+      <b>Nightmare 200: <br></b><br>
+      <span id="nm200FightCountDisplay">00</span> fights<br>
+      <span id="nm200TimeDisplay">00:00:00</span><br>
+      <span id="nm200HonorsDisplay">00</span> 공헌도<br>
+      <span id="nm200TokenDisplay">00</span> tokens<br>
+      <span id="nm200MeatsDisplay">00</span> meat loss<br>
+      <span id="nm200APDisplay">00</span><br>
+    </div>
+
+  </div>
+</body>
+
+</html>

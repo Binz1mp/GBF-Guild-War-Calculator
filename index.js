@@ -393,114 +393,92 @@ function calculate() {
 
   if (document.getElementById("exCalcCheck").checked) {
     document.getElementById("reportEx").style.display = "inline-block";
-    document.getElementById("exFightCountDisplay").innerHTML = totalGoalEx;
+    document.getElementById("exFightCountDisplay").innerHTML = totalGoalEx.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     document.getElementById("exTimeDisplay").innerHTML = exFinalTime;
-    document.getElementById("exHonorsDisplay").innerHTML = totalGoalExHonors;
-    document.getElementById("exTokenDisplay").innerHTML = Math.floor(totalGoalExTokens);
-    document.getElementById("exMeatsDisplay").innerHTML = totalGoalExMeat;
-    document.getElementById("exAPDisplay").innerHTML = totalGoalExAP;
-    document.getElementById("exPotsDisplay").innerHTML = totalGoalExPots;
+    document.getElementById("exHonorsDisplay").innerHTML = totalGoalExHonors.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    document.getElementById("exTokenDisplay").innerHTML = Math.floor(totalGoalExTokens).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    document.getElementById("exMeatsDisplay").innerHTML = totalGoalExMeat.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    document.getElementById("exAPDisplay").innerHTML = totalGoalExAP.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    document.getElementById("exPotsDisplay").innerHTML = totalGoalExPots.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   } else {
     document.getElementById("reportEx").style.display = "none";
   }
 
   if (document.getElementById("expCalcCheck").checked) {
     document.getElementById("reportExp").style.display = "inline-block";
-    document.getElementById("expFightCountDisplay").innerHTML = totalGoalExp;
+    document.getElementById("expFightCountDisplay").innerHTML = totalGoalExp.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     document.getElementById("expTimeDisplay").innerHTML = expFinalTime;
-    document.getElementById("expHonorsDisplay").innerHTML = totalGoalExpHonors;
-    document.getElementById("expTokenDisplay").innerHTML = Math.floor(totalGoalExpTokens);
-    document.getElementById("expMeatsDisplay").innerHTML = totalGoalExpMeat;
-    document.getElementById("expAPDisplay").innerHTML = totalGoalExpAP;
-    document.getElementById("expPotsDisplay").innerHTML = totalGoalExpPots;
+    document.getElementById("expHonorsDisplay").innerHTML = totalGoalExpHonors.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    document.getElementById("expTokenDisplay").innerHTML = Math.floor(totalGoalExpTokens).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    document.getElementById("expMeatsDisplay").innerHTML = totalGoalExpMeat.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    document.getElementById("expAPDisplay").innerHTML = totalGoalExpAP.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    document.getElementById("expPotsDisplay").innerHTML = totalGoalExpPots.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   } else {
     document.getElementById("reportExp").style.display = "none";
   }
 
   if (document.getElementById("nm90CalcCheck").checked) {
     document.getElementById("reportnm90").style.display = "inline-block";
-    document.getElementById("nm90FightCountDisplay").innerHTML = totalGoalNm90;
+    document.getElementById("nm90FightCountDisplay").innerHTML = totalGoalNm90.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     document.getElementById("nm90TimeDisplay").innerHTML = nm90FinalTime;
-    document.getElementById(
-      "nm90HonorsDisplay"
-    ).innerHTML = totalGoalNm90Honors;
-    document.getElementById("nm90TokenDisplay").innerHTML = Math.floor(totalGoalNm90Tokens);
-    document.getElementById("nm90MeatsDisplay").innerHTML = totalGoalNm90Meat;
-    document.getElementById("nm90APDisplay").innerHTML = totalGoalNm90AP;
+    document.getElementById("nm90HonorsDisplay").innerHTML = totalGoalNm90Honors.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    document.getElementById("nm90TokenDisplay").innerHTML = Math.floor(totalGoalNm90Tokens).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    document.getElementById("nm90MeatsDisplay").innerHTML = totalGoalNm90Meat.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    document.getElementById("nm90APDisplay").innerHTML = totalGoalNm90AP.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     document.getElementById("reportnm90").style.display = "inline-block";
-    document.getElementById("nm90PotsDisplay").innerHTML = totalGoalNm90Pots;
+    document.getElementById("nm90PotsDisplay").innerHTML = totalGoalNm90Pots.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   } else {
     document.getElementById("reportnm90").style.display = "none";
   }
 
   if (document.getElementById("nm95CalcCheck").checked) {
     document.getElementById("reportnm95").style.display = "inline-block";
-    document.getElementById("nm95FightCountDisplay").innerHTML = totalGoalNm95;
+    document.getElementById("nm95FightCountDisplay").innerHTML = totalGoalNm95.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     document.getElementById("nm95TimeDisplay").innerHTML = nm95FinalTime;
-    document.getElementById(
-      "nm95HonorsDisplay"
-    ).innerHTML = totalGoalNm95Honors;
-    document.getElementById("nm95TokenDisplay").innerHTML = Math.floor(totalGoalNm95Tokens);
-    document.getElementById("nm95MeatsDisplay").innerHTML = totalGoalNm95Meat;
-    document.getElementById("nm95APDisplay").innerHTML = totalGoalNm95AP;
-    document.getElementById("nm95PotsDisplay").innerHTML = totalGoalNm95Pots;
+    document.getElementById("nm95HonorsDisplay").innerHTML = totalGoalNm95Honors.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    document.getElementById("nm95TokenDisplay").innerHTML = Math.floor(totalGoalNm95Tokens).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    document.getElementById("nm95MeatsDisplay").innerHTML = totalGoalNm95Meat.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    document.getElementById("nm95APDisplay").innerHTML = totalGoalNm95AP.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    document.getElementById("nm95PotsDisplay").innerHTML = totalGoalNm95Pots.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   } else {
     document.getElementById("reportnm95").style.display = "none";
   }
 
   if (document.getElementById("nm100CalcCheck").checked) {
     document.getElementById("reportnm100").style.display = "inline-block";
-    document.getElementById(
-      "nm100FightCountDisplay"
-    ).innerHTML = totalGoalNm100;
+    document.getElementById("nm100FightCountDisplay").innerHTML = totalGoalNm100.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     document.getElementById("nm100TimeDisplay").innerHTML = nm100FinalTime;
-    document.getElementById(
-      "nm100HonorsDisplay"
-    ).innerHTML = totalGoalNm100Honors;
-    document.getElementById(
-      "nm100TokenDisplay"
-    ).innerHTML = Math.floor(totalGoalNm100Tokens);
-    document.getElementById("nm100MeatsDisplay").innerHTML = totalGoalNm100Meat;
-    document.getElementById("nm100APDisplay").innerHTML = totalGoalNm100AP;
-    document.getElementById("nm100PotsDisplay").innerHTML = totalGoalNm100Pots;
+    document.getElementById("nm100HonorsDisplay").innerHTML = totalGoalNm100Honors.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    document.getElementById("nm100TokenDisplay").innerHTML = Math.floor(totalGoalNm100Tokens).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    document.getElementById("nm100MeatsDisplay").innerHTML = totalGoalNm100Meat.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    document.getElementById("nm100APDisplay").innerHTML = totalGoalNm100AP.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    document.getElementById("nm100PotsDisplay").innerHTML = totalGoalNm100Pots.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   } else {
     document.getElementById("reportnm100").style.display = "none";
   }
   
   if (document.getElementById("nm150CalcCheck").checked) {
     document.getElementById("reportnm150").style.display = "inline-block";
-    document.getElementById(
-      "nm150FightCountDisplay"
-    ).innerHTML = totalGoalNm150;
+    document.getElementById("nm150FightCountDisplay").innerHTML = totalGoalNm150.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     document.getElementById("nm150TimeDisplay").innerHTML = nm150FinalTime;
-    document.getElementById(
-      "nm150HonorsDisplay"
-    ).innerHTML = totalGoalNm150Honors;
-    document.getElementById(
-      "nm150TokenDisplay"
-    ).innerHTML = Math.floor(totalGoalNm150Tokens);
-    document.getElementById("nm150MeatsDisplay").innerHTML = totalGoalNm150Meat;
-    document.getElementById("nm150APDisplay").innerHTML = totalGoalNm150AP;
-    document.getElementById("nm150PotsDisplay").innerHTML = totalGoalNm150Pots;
+    document.getElementById("nm150HonorsDisplay").innerHTML = totalGoalNm150Honors.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    document.getElementById("nm150TokenDisplay").innerHTML = Math.floor(totalGoalNm150Tokens).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    document.getElementById("nm150MeatsDisplay").innerHTML = totalGoalNm150Meat.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    document.getElementById("nm150APDisplay").innerHTML = totalGoalNm150AP.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    document.getElementById("nm150PotsDisplay").innerHTML = totalGoalNm150Pots.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   } else {
     document.getElementById("reportnm150").style.display = "none";
   }
 
   if (document.getElementById("nm200CalcCheck").checked) {
     document.getElementById("reportnm200").style.display = "inline-block";
-    document.getElementById(
-      "nm200FightCountDisplay"
-    ).innerHTML = totalGoalNm200;
+    document.getElementById("nm200FightCountDisplay").innerHTML = totalGoalNm200.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     document.getElementById("nm200TimeDisplay").innerHTML = nm200FinalTime;
-    document.getElementById(
-      "nm200HonorsDisplay"
-    ).innerHTML = totalGoalNm200Honors;
-    document.getElementById(
-      "nm200TokenDisplay"
-    ).innerHTML = Math.floor(totalGoalNm200Tokens);
-    document.getElementById("nm200MeatsDisplay").innerHTML = totalGoalNm200Meat;
-    document.getElementById("nm200APDisplay").innerHTML = totalGoalNm200AP;
-    document.getElementById("nm200PotsDisplay").innerHTML = totalGoalNm200Pots;
+    document.getElementById("nm200HonorsDisplay").innerHTML = totalGoalNm200Honors.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    document.getElementById("nm200TokenDisplay").innerHTML = Math.floor(totalGoalNm200Tokens).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    document.getElementById("nm200MeatsDisplay").innerHTML = totalGoalNm200Meat.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    document.getElementById("nm200APDisplay").innerHTML = totalGoalNm200AP.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    document.getElementById("nm200PotsDisplay").innerHTML = totalGoalNm200Pots.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   } else {
     document.getElementById("reportnm200").style.display = "none";
   }
